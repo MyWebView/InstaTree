@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranay Reddy Kandula</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: rgba(255, 255, 255, 0.12);
+            --secondary-color: rgba(255, 255, 255, 0.25);
+            --text-color: #fff;
+            --highlight-color: rgba(255, 255, 255, 0.4);
+            --blur-amount: 20px;
+            --transition-speed: 0.45s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Space comet animations */
+        .comet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
+            animation: cometFly linear infinite;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .comet::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+            transform-origin: left center;
+            transform: rotate(-45deg);
+        }
+
+        @keyframes cometFly {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(1000px, 500px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 30px rgba(255, 255, 255, 0.1) inset;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Enhanced glossy overlay */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.15) 45%,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            pointer-events: none;
+            animation: shine 6s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: rotate(30deg) translate(-10%, -10%); }
+            50% { transform: rotate(30deg) translate(10%, 10%); }
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 22px;
+            background: var(--primary-color);
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            will-change: transform, background;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--highlight-color), 
+                transparent);
+            transition: all 0.8s ease;
+            z-index: 1;
+        }
+
+        .link-item:hover::before {
+            left: 100%;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            background: var(--secondary-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-icon {
+            margin-right: 15px;
+            font-size: 22px;
+            width: 24px;
+            text-align: center;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .link-item:hover .link-icon {
+            transform: scale(1.15);
+        }
+
+        .link-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Error message */
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Comets will be added here by JavaScript -->
+    <div class="container">
+        <div class="profile">
+            <div class="profile-image">
+                <img src="img1.jpg" alt="Pranay Reddy Kandula">
+            </div>
+            <h1>Pranay Reddy Kandula</h1>
+        </div>
+        
+        <div class="links-container">
+            <a href="https://in.linkedin.com/in/pranay-reddy-kandula-891a7125b" target="_blank" rel="noopener noreferrer" class="link-item">
+                <div class="link-icon"><i class="fab fa-linkedin"></i></div>
+                <div class="link-text">LinkedIn</div>
+            </a>
+            
+            <a href="mailto:pranayreddykandula@gmail.com" class="link-item">
+                <div class="link-icon"><i class="fas fa-envelope"></i></div>
+                <div class="link-text">Email</div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Create comets
+        function createComets() {
+            const body = document.body;
+            const numberOfComets = 5;
+            
+            for (let i = 0; i < numberOfComets; i++) {
+                const comet = document.createElement('div');
+                comet.classList.add('comet');
+                
+                // Random position
+                const startX = Math.random() * window.innerWidth - 200;
+                const startY = Math.random() * window.innerHeight - 200;
+                
+                // Random delay
+                const delay = Math.random() * 15;
+                
+                // Random duration
+                const duration = 5 + Math.random() * 10;
+                
+                // Apply styles
+                comet.style.left = `${startX}px`;
+                comet.style.top = `${startY}px`;
+                comet.style.animationDelay = `${delay}s`;
+                comet.style.animationDuration = `${duration}s`;
+                
+                body.appendChild(comet);
+            }
+        }
+        
+        // Create comets on load
+        window.addEventListener('load', createComets);
+        
+        // Create new comets periodically
+        setInterval(createComets, 5000);
+    </script>
+</body>
+</html>
